@@ -5,6 +5,8 @@ from models.base_model import Base
 from sqlalchemy import Column, String, ForeignKey, Integer, Float
 from sqlalchemy.orm import relationship
 import models
+from models.base_model import Review
+from models.engine.file_storage import FileStorage
 
 
 class Place(BaseModel, Base):
@@ -23,6 +25,7 @@ class Place(BaseModel, Base):
         price_by_night = Column(Integer, nullable=False, default=0)
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
+        reviews = relationship("Review", backref="place")
     else:
         city_id = ""
         user_id = ""
@@ -40,3 +43,11 @@ class Place(BaseModel, Base):
         """Constructor
         """
         super().__init__(*args, **kwargs)
+
+    @property
+    def reviews(self):
+        instance_list = []
+        for review in models.storage.all(Review).values():
+            if review.place_id == self.id:
+                instance_list.append(review)
+        return instance_list
