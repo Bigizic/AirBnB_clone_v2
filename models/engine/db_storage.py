@@ -54,7 +54,8 @@ class DBStorage():
         class_mapping = {
                 'State': State,
                 'City': City,
-                'User': User
+                'User': User,
+                'Place': Place
             }
 
         objects = []
