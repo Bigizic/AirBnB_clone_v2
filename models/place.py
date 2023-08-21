@@ -35,8 +35,7 @@ class Place(BaseModel, Base):
                               Column('amenity_id', String(60),
                                      ForeignKey('amenities.id'),
                                      primary_key=True,
-                                     nullable=False)
-                        )
+                                     nullable=False))
         amenities = relationship("Amenity", secondary=place_amenity,
                                  back_populates="place_amenities",
                                  viewonly=False)
