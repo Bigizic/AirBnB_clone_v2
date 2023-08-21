@@ -5,7 +5,7 @@ from models.base_model import Base
 from sqlalchemy import Column, String, ForeignKey, Integer, Float
 from sqlalchemy.orm import relationship
 import models
-from models.base_model import Review
+from models.review import Review
 from models.engine.file_storage import FileStorage
 
 
