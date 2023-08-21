@@ -57,7 +57,7 @@ class DBStorage():
                 'User': User,
                 'Place': Place,
                 'Review': Review,
-                'Amenity': Amenity
+                'Amenity': Amenity,
                 'BaseModel': BaseModel
             }
 
