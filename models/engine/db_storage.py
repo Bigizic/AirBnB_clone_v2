@@ -58,6 +58,7 @@ class DBStorage():
                 'Place': Place,
                 'Review': Review,
                 'Amenity': Amenity
+                'BaseModel': BaseModel
             }
 
         objects = []
