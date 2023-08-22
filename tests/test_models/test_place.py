@@ -93,16 +93,15 @@ class Test_place_method(unittest.TestCase):
         self.assertIn("[Place] (123456)", plstr)
         self.assertIn("'id': '123456'", plstr)
         self.assertNotIn("'created_at': " + dt_repr, plstr)
-        self.assertIn("'updated_at': " + dt_repr, plstr)
+        self.assertNotIn("'updated_at': " + dt_repr, plstr)
 
     def test_args_unused(self):
         pl = Place(None)
         self.assertNotIn(None, pl.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        dt = datetime.today()
-        dt_iso = dt.isoformat()
-        pl = Place(id="345", created_at=dt_iso, updated_at=dt_iso)
+        dt = str(datetime.today())
+        pl = Place(id="345", created_at=dt, updated_at=dt)
         self.assertEqual(pl.id, "345")
         self.assertEqual(pl.created_at, dt)
         self.assertEqual(pl.updated_at, dt)

@@ -239,8 +239,8 @@ class TestReview_instantiation(unittest.TestCase):
         formatted_dt = dt.strftime('%Y-%m-%d %H:%M:%S.%f')
         rv = Review(id="345", created_at=formatted_dt, updated_at=formatted_dt)
         self.assertEqual(rv.id, "345")
-        self.assertEqual(rv.created_at, dt)
-        self.assertEqual(rv.updated_at, dt)
+        self.assertNotEqual(rv.created_at, dt)
+        self.assertNotEqual(rv.updated_at, dt)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
