@@ -6,7 +6,7 @@ from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 import models
 
-if models.storage_t == "db":
+if models.storage_temp == "db":
     Base = declarative_base()
 
 
@@ -30,6 +30,8 @@ class BaseModel:
                     setattr(self, key, type(self))
                 else:
                     setattr(self, key, value)
+            if kwargs.get("id", None) is None:
+                self.id = str(uuid.uuid4())
 
         if not kwargs:
             from models import storage
