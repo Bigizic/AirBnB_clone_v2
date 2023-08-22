@@ -14,12 +14,14 @@ class FileStorage:
             return FileStorage.__objects
         else:
             cls_obj = {k: obj for k, obj in self.__objects.items()
-                    if isinstance(obj, cls)}
+                       if isinstance(obj, cls)}
             return cls_obj
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
-        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+        # self.all().update({obj.to_dict()['__class__'] + '.' +
+        # obj.id: obj})
+        self.__objects["{}.{}".format(type(obj).__name__, obj.id)] = obj
 
     def save(self):
         """Saves storage dictionary to file"""
