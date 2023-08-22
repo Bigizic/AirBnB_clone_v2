@@ -11,6 +11,7 @@ from time import sleep
 import models
 import unittest
 import time
+import os
 
 
 class Test_place_method(unittest.TestCase):
