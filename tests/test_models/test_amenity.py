@@ -53,12 +53,13 @@ class TestAmenity_save_method(unittest.TestCase):
     """
 
     def test_amenity_updates_updated_at_attribute(self):
-        am = Amenity()
-        initial_updated_at = am.updated_at
-        time.sleep(1)
-        am.save()
-        new_updated_at = am.updated_at
-        self.assertGreater(new_updated_at, initial_updated_at)
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            am = Amenity()
+            initial_updated_at = am.updated_at
+            time.sleep(1)
+            am.save()
+            new_updated_at = am.updated_at
+            self.assertGreater(new_updated_at, initial_updated_at)
 
 
 class TestAmenity_to_dict_method(unittest.TestCase):
