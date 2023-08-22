@@ -237,8 +237,8 @@ class TestReview_instantiation(unittest.TestCase):
         rvstr = rv.__str__()
         self.assertIn("[Review] (123456)", rvstr)
         self.assertIn("'id': '123456'", rvstr)
-        self.assertIn("'created_at': " + dt_repr, rvstr)
-        self.assertIn("'updated_at': " + dt_repr, rvstr)
+        self.assertNotIn("'created_at': " + dt_repr, rvstr)
+        self.assertNotIn("'updated_at': " + dt_repr, rvstr)
 
     def test_args_unused(self):
         rv = Review(None)
