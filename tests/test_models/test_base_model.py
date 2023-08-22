@@ -123,10 +123,10 @@ class Test_base_model_foundations(unittest.TestCase):
             attributes, that's why i used the NotEqual to compare args
         """
         model_dict = {
-                'id': '1234-5678',
-                'created_at': '2017-09-28 21:03:54.052298',
-                'updated_at': '2017-09-28 21:03:54.052302',
-                'name': 'Isaac'
+            'id': '1234-5678',
+            'created_at': '2017-09-28 21:03:54.052298',
+            'updated_at': '2017-09-28 21:03:54.052302',
+            'name': 'Isaac'
         }
         my_kwargs = BaseModel(**model_dict)
 
@@ -188,7 +188,6 @@ class TestBaseModel_to_dict_method(unittest.TestCase):
         self.assertEqual(bm1, obj_dict['created_at'])
         bm2 = base_model.updated_at.isoformat()
         self.assertEqual(bm2, obj_dict['updated_at'])
-        # self.assertEqual(base_model.__class__.__name__, obj_dict['__class__'])
 
     def test_to_dict_handles_additional_attributes(self):
         base_model = BaseModel()

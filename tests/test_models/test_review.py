@@ -98,6 +98,7 @@ class TestReviewAttributes(unittest.TestCase):
             rv.user_id(None)
             rv.text(None)
 
+
 class TestReview_to_dict_method(unittest.TestCase):
     """Unittests for testing to_dict() for the class Review
     """
