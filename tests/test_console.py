@@ -1069,4 +1069,5 @@ class TestHBNBCommand_update(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+        unittest.main()

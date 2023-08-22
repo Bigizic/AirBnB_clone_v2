@@ -9,6 +9,7 @@ import models
 import unittest
 from datetime import datetime
 import time
+import os
 from models.user import User
 from models.base_model import BaseModel
 from unittest.mock import patch
@@ -31,10 +32,11 @@ class TestUser_method(unittest.TestCase):
         self.assertTrue(hasattr(self.user, 'last_name'))
 
     def test_user_attributes_are_empty_strings_by_default(self):
-        self.assertEqual(self.user.email, "")
-        self.assertEqual(self.user.password, "")
-        self.assertEqual(self.user.first_name, "")
-        self.assertEqual(self.user.last_name, "")
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(self.user.email, "")
+            self.assertEqual(self.user.password, "")
+            self.assertEqual(self.user.first_name, "")
+            self.assertEqual(self.user.last_name, "")
 
     def test_user_attributes_can_be_assigned(self):
         self.user.email = "test@example.com"
@@ -51,13 +53,16 @@ class TestUser_method(unittest.TestCase):
         self.assertEqual(datetime, type(User().updated_at))
 
     def test_password_is_public_str(self):
-        self.assertEqual(str, type(User.password))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(User.password))
 
     def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(User.first_name))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(User.first_name))
 
     def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(User.last_name))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(User.last_name))
 
     def test_id_is_public_str(self):
         self.assertEqual(str, type(User().id))

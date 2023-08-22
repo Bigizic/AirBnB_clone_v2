@@ -24,7 +24,8 @@ class Test_State_foundation(unittest.TestCase):
         self.assertEqual(str, type(State().id))
 
     def test_name_type(self):
-        self.assertEqual(str, type(State().name))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(State().name))
 
     def test_created_at_type(self):
         self.assertEqual(datetime, type(State().created_at))
@@ -57,7 +58,8 @@ class Test_State_foundation(unittest.TestCase):
 
     def test_state_attributes_are_empty_strings_by_default(self):
         s1 = State()
-        self.assertEqual(s1.name, "")
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(s1.name, "")
 
     def test_state_attributes_can_be_assigned(self):
         s1 = State()
@@ -68,7 +70,8 @@ class Test_State_foundation(unittest.TestCase):
         self.assertEqual(datetime, type(State().updated_at))
 
     def test_name_is_public_str(self):
-        self.assertEqual(str, type(State.name))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(State.name))
 
     def test_id_is_public_str(self):
         self.assertEqual(str, type(State().id))

@@ -6,6 +6,7 @@
 """
 
 import models
+import os
 import unittest
 from datetime import datetime
 import time
@@ -84,4 +85,5 @@ class TestAmenity_to_dict_method(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+        unittest.main()
