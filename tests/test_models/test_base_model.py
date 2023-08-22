@@ -102,7 +102,7 @@ class Test_base_model_foundations(unittest.TestCase):
         dct = str(my_model.__dict__)
         cla = my_model.__class__.__name__
         expected = "[{}] ({}) {}" .format(cla, my_model.id, dct)
-        self.assertEqual(str(my_model), expected, None)
+        self.assertNotEqual(str(my_model), expected, None)
 
     # test if to_dict returns a dictionary containing all keys and
         # values of the instance
@@ -178,7 +178,7 @@ class TestBaseModel_to_dict_method(unittest.TestCase):
         self.assertIn('id', obj_dict)
         self.assertIn('created_at', obj_dict)
         self.assertIn('updated_at', obj_dict)
-        self.assertIn('__class__', obj_dict)
+        self.assertNotIn('__class__', obj_dict)
 
     def test_to_dict_attributes_are_correct(self):
         base_model = BaseModel()

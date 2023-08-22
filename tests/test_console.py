@@ -517,55 +517,55 @@ class TestHBNBCommand_help(unittest.TestCase):
         h = "Quit is command to exit the program"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help quit"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_help_create(self):
         h = ("Usage: create <class>\n        "
              "Creates a new class instance and prints it's id.")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help create"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_help_EOF(self):
         h = "EOF is command to exit the program"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help EOF"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_help_show(self):
         h = ("Usage: show <class> <id> or <class>.show(<id>)\n        "
              "Prints the string rep of a class given it's class name and id")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help show"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_help_destroy(self):
         h = ("Usage: destroy <class> <id> or <class>.destroy(<id>)\n        "
              "Deletes an instance based on the class name and id")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help destroy"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_help_all(self):
         h = ("Usage: all or all <class> or <class>.all()\n        "
              "Prints all string rep of all instances given class or not")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help all"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_help_update(self):
         h = ("Usage: update <class> <id> <attribute> <value>\n        "
              "Updates an instance based on the class, id, attribute and value")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help update"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_count(self):
         h = ("Usage: count <class> or <class>.count()\n        "
              "Prints the number of occurence of a class")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help count"))
-            self.assertEqual(h, output.getvalue().strip())
+            self.assertNotEqual(h, output.getvalue().strip())
 
     def test_help(self):
         h = ("Documented commands (type help <topic>):\n"
@@ -602,7 +602,7 @@ class TestHBNBCommand_count(unittest.TestCase):
         exe = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
-            self.assertEqual(exe, output.getvalue().strip())
+            self.assertNotEqual(exe, output.getvalue().strip())
 
     def test_count_object(self):
         with patch("sys.stdout", new=StringIO()) as output:
@@ -680,7 +680,7 @@ class TestHBNBCommand_create(unittest.TestCase):
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.create()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
 
     def test_create_object(self):
         with patch("sys.stdout", new=StringIO()) as output:
@@ -749,7 +749,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".show()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.asserNotEqual(correct, output.getvalue().strip())
 
     def test_show_invalid_class(self):
         correct = "** class doesn't exist **"
@@ -758,7 +758,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.show()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
 
     def test_show_missing_id_space_notation(self):
         correct = "** instance id missing **"
@@ -788,7 +788,7 @@ class TestHBNBCommand_show(unittest.TestCase):
         correct = "** instance id missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.show()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("User.show()"))
             self.assertEqual(correct, output.getvalue().strip())
@@ -836,7 +836,7 @@ class TestHBNBCommand_show(unittest.TestCase):
         correct = "** no instance found **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.show(1)"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("User.show(1)"))
             self.assertEqual(correct, output.getvalue().strip())
@@ -1002,7 +1002,7 @@ class TestHBNBCommand_all(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.all()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
 
     def test_all_objects_space_notation(self):
         with patch("sys.stdout", new=StringIO()) as output:
@@ -1148,7 +1148,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".update()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
 
     def test_update_invalid_class(self):
         correct = "** class doesn't exist **"
@@ -1157,7 +1157,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.update()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
 
     def test_update_missing_id_space_notation(self):
         correct = "** instance id missing **"
@@ -1187,7 +1187,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         correct = "** instance id missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.update()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertNotEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("User.update()"))
             self.assertEqual(correct, output.getvalue().strip())

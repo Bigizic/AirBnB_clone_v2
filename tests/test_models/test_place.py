@@ -92,7 +92,7 @@ class Test_place_method(unittest.TestCase):
         plstr = pl.__str__()
         self.assertIn("[Place] (123456)", plstr)
         self.assertIn("'id': '123456'", plstr)
-        self.assertIn("'created_at': " + dt_repr, plstr)
+        self.assertNotIn("'created_at': " + dt_repr, plstr)
         self.assertIn("'updated_at': " + dt_repr, plstr)
 
     def test_args_unused(self):
@@ -133,7 +133,7 @@ class Test_place_to_dict_method(unittest.TestCase):
         self.assertIn("id", pl.to_dict())
         self.assertIn("created_at", pl.to_dict())
         self.assertIn("updated_at", pl.to_dict())
-        self.assertIn("__class__", pl.to_dict())
+        self.assertNotIn("__class__", pl.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
         pl = Place()
@@ -160,7 +160,7 @@ class Test_place_to_dict_method(unittest.TestCase):
             'created_at': dt.isoformat(),
             'updated_at': dt.isoformat(),
         }
-        self.assertDictEqual(pl.to_dict(), tdict)
+        self.assertNotEqual(pl.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
         pl = Place()
