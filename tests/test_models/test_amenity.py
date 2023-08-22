@@ -13,6 +13,7 @@ import time
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from unittest.mock import patch
+import os
 
 
 class TestAmenity_method(unittest.TestCase):
@@ -29,7 +30,8 @@ class TestAmenity_method(unittest.TestCase):
         self.assertTrue(hasattr(self.am, 'name'))
 
     def test_amenity_attributes_are_empty_strings_by_default(self):
-        self.assertEqual(self.am.name, "")
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(self.am.name, "")
 
     def test_amenity_attributes_can_be_assigned(self):
         self.am.name = "john"
@@ -39,7 +41,8 @@ class TestAmenity_method(unittest.TestCase):
         self.assertEqual(datetime, type(Amenity().updated_at))
 
     def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(Amenity.name))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(Amenity.name))
 
     def test_id_is_public_str(self):
         self.assertEqual(str, type(Amenity().id))

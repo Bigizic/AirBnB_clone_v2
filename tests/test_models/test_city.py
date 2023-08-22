@@ -9,6 +9,7 @@ from datetime import datetime
 from models.base_model import BaseModel
 from unittest.mock import patch
 import time
+import os
 
 
 class TestCity_method(unittest.TestCase):
@@ -29,8 +30,9 @@ class TestCity_method(unittest.TestCase):
         self.assertTrue(hasattr(self.city, 'name'))
 
     def test_city_attributes_are_empty_strings_by_default(self):
-        self.assertEqual(self.city.state_id, "")
-        self.assertEqual(self.city.name, "")
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(self.city.state_id, "")
+            self.assertEqual(self.city.name, "")
 
     def test_city_attributes_can_be_assigned(self):
         self.city.state_id = "2468"
@@ -43,10 +45,12 @@ class TestCity_method(unittest.TestCase):
         self.assertEqual(datetime, type(City().updated_at))
 
     def test_password_is_public_str(self):
-        self.assertEqual(str, type(City.state_id))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(City.state_id))
 
     def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(City.name))
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            self.assertEqual(str, type(City.name))
 
     def test_id_is_public_str(self):
         self.assertEqual(str, type(City().id))

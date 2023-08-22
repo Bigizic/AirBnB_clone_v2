@@ -15,6 +15,7 @@ from models.state import State
 from datetime import datetime
 from models.base_model import BaseModel
 import time
+import os
 
 
 class Test_State_foundation(unittest.TestCase):
