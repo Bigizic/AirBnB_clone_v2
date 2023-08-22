@@ -45,7 +45,7 @@ class Place(BaseModel, Base):
         reviews = relationship("Review", backref="place")
         amenities = relationship("Amenity",
                                  secondary="place_amenity",
-                                 backref="place_amenities",
+                                 back_populates="place_amenities",
                                  viewonly=False)
         """
         place_amenity = Table('place_amenity', Base.metadata,
