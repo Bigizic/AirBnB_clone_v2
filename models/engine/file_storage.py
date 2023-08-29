@@ -64,6 +64,8 @@ class FileStorage:
         Deletes obj from __objects if it's inside otherwise if
         obj is equal to None won't delete anything
         """
-        if obj:
+        if obj is not None:
             key = f"{obj.__class__.__name__}.{obj.id}"
             self.__objects.pop(key, None)
+        else:
+            pass
