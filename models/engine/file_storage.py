@@ -68,7 +68,7 @@ class FileStorage:
                     self.__objects[key] = val
         except Exception:
             pass
-        
+
     def delete(self, obj=None):
         """elete obj from __objects if it’s inside otherwise
         does nothing
