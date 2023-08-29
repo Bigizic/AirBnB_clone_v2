@@ -6,7 +6,6 @@ from sqlalchemy import Column, String, ForeignKey, Integer, Float
 from sqlalchemy.orm import relationship
 import models
 from models.review import Review
-from models.engine.file_storage import FileStorage
 from sqlalchemy import Table
 from models.amenity import Amenity
 
