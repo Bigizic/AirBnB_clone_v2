@@ -32,7 +32,7 @@ def do_deploy(archive_path):
             uncompress_dir))
         run("rm /tmp/{}".format(tar))
         run("rm -rf /data/web_static/current")
-        run (f'ln -s {uncompress_dir} /data/web_static/current')
+        run(f'ln -s {uncompress_dir} /data/web_static/current')
 
         return True
     except Exception as e:
