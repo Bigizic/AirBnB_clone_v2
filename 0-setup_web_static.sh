@@ -3,7 +3,7 @@
 
 sudo apt update
 sudo apt install nginx
-sudo ufw alow 'Nginx FULL'
+sudo ufw allow 'Nginx FULL'
 
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
