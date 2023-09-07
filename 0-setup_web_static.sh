@@ -2,10 +2,8 @@
 # bash script that prepares a web server
 
 sudo apt update
-if ! dpkg -l | grep -q "nginx"; then
-	sudo apt install nginx -y
-	sudo ufw allow 'Nginx FULL'
-fi
+sudo apt install nginx -y
+sudo ufw allow 'Nginx FULL'
 
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
