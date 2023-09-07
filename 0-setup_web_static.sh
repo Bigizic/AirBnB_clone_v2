@@ -2,13 +2,16 @@
 # bash script that prepares a web server
 
 sudo apt update
-sudo apt install nginx
-sudo ufw allow 'Nginx FULL'
+if ! dpkg -l | grep -q "nginx"; then
+	sudo apt install nginx -y
+	sudo ufw allow 'Nginx FULL'
+fi
 
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
-touch /data/web_static/releases/test/index.html
+# touch /data/web_static/releases/test/index.html
+echo "test page" | sudo tee /data/web_static/releases/test/index.html > /dev/null
 
 if [ -L /data/web_static/current ]; then # delte symbolic link
 	sudo rm /data/web_static/current
