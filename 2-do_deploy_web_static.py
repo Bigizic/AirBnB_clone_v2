@@ -26,7 +26,7 @@ def do_deploy(archive_path):
         tar_name = archive_path[9:-4]  # without extension
         tar = archive_path[9:]  # wit extension
         uncompress_dir = f'/data/web_static/releases/{tar_name}/'
-        put(archive_path "/tmp/")
+        put(archive_path, "/tmp/")
         run(f'mkdir -p {uncompress_dir}')
         run("tar -xzf /tmp/{} -C {}".format(archive_path[9:],
             uncompress_dir))
