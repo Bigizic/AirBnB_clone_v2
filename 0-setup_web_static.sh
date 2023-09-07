@@ -3,10 +3,9 @@
 
 sudo apt update
 sudo apt install nginx -y
-sudo ufw allow 'Nginx FULL'
 
-sudo mkdir -p /data/web_static/releases/test/
-sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test
+sudo mkdir -p /data/web_static/shared
 
 # touch /data/web_static/releases/test/index.html
 echo "test page" | sudo tee /data/web_static/releases/test/index.html > /dev/null
@@ -15,17 +14,10 @@ if [ -L /data/web_static/current ]; then # delte symbolic link
 	sudo rm /data/web_static/current
 fi
 
-sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
-sudo chown -R ubuntu:ubuntu /data/
+sudo chown -hR ubuntu:ubuntu /data/
 
-config_file="/etc/nginx/sites-available/default"
+sudo sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
-if ! grep -q "location /hbnb_static/" "$config_file"; then
-	echo "location /hbnb_static/ {" | sudo tee -a "$config_file"
-	echo "\talias /data/web_static/current/;" | sudo tee -a "$config_file"
-	echo "\tautoindex off;" | sudo tee -a "$config_file"
-	echo "}" | sudo tee -a "$config_file"
-fi
-
-sudo systemctl restart nginx
+sudo service nginx restart
