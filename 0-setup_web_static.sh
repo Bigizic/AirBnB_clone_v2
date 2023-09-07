@@ -23,8 +23,8 @@ config_file="/etc/nginx/sites-available/default"
 
 if ! grep -q "location /hbnb_static/" "$config_file"; then
 	echo "location /hbnb_static/ {" | sudo tee -a "$config_file"
-	echo "    alias /data/web_static/current/;" | sudo tee -a "$config_file"
-	echo "    autoindex off;" | sudo tee -a "$config_file"
+	echo "\talias /data/web_static/current/;" | sudo tee -a "$config_file"
+	echo "\tautoindex off;" | sudo tee -a "$config_file"
 	echo "}" | sudo tee -a "$config_file"
 fi
 
