@@ -3,6 +3,7 @@
 
 sudo apt update
 sudo apt install nginx -y
+sudo apt upgrade nginx -y
 
 sudo mkdir -p /data/web_static/releases/test
 sudo mkdir -p /data/web_static/shared
