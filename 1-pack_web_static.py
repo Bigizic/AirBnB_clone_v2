@@ -5,7 +5,7 @@ web_static folder
 
 import datetime
 from os import makedirs
-from fabric.api import run, local, cd
+from fabric.api import local
 
 
 def do_pack():
