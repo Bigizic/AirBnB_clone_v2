@@ -24,12 +24,10 @@ sudo chown -R ubuntu:ubuntu /data/
 config_file="/etc/nginx/sites-available/default"
 
 if ! grep -q "location /hbnb_static/" "$config_file"; then
-	sudo tee -a "$config_file" <<EOF
-	location /static/ {
-		alias /var/www/app/static/;
-		autoindex off;
-	}
-EOF
+	echo "location /hbnb_static/ {" | sudo tee -a "$config_file"
+	echo "    alias /data/web_static/current/;" | sudo tee -a "$config_file"
+	echo "    autoindex off;" | sudo tee -a "$config_file"
+	echo "}" | sudo tee -a "$config_file"
 fi
 
 sudo systemctl restart nginx
