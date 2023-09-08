@@ -62,8 +62,7 @@ def do_deploy(archive_path):
         run(f'ln -s {uncompress_dir} /data/web_static/current')
 
         return True
-    except Exception as e:
-        print(e)
+    except Exception:
         return False
 
 
