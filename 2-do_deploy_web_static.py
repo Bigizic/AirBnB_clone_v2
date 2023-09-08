@@ -26,14 +26,16 @@ def do_deploy(archive_path):
         tar = archive_path[9:]  # wit extension
         uncompress_dir = f'/data/web_static/releases/{tar_name}/'
         put(archive_path, "/tmp/{}".format(tar))
-        run(f'rm -rf {uncompress_dir}/')
-        run(f'mkdir -p {uncompress_dir}/')
-        run("tar -xzf /tmp/{} -C {}/".format(tar, uncompress_dir))
+        #run(f'rm -rf {uncompress_dir}/')
+        run(f'mkdir -p {uncompress_dir}')
+        run("tar -xzf /tmp/{} -C {}".format(tar, uncompress_dir))
         run("rm /tmp/{}".format(tar))
+        run("mv {}web_static/* {}".format(
+            uncompress_dir, uncompress_dir))
         run("rm -rf /data/web_static/releases/{}/web_static"
             .format(tar_name))
         run("rm -rf /data/web_static/current")
-        run(f'ln -s {uncompress_dir}/ /data/web_static/current')
+        run(f'ln -s {uncompress_dir} /data/web_static/current')
 
         return True
     except Exception as e:
