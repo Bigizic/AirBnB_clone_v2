@@ -5,7 +5,6 @@
 from os.path import exists
 from fabric.api import *
 
-env.user = "ubuntu"
 env.hosts = ['54.82.132.33', '100.24.235.105']
 
 
@@ -26,11 +25,14 @@ def do_deploy(archive_path):
         tar_name = archive_path[9:-4]  # without extension
         tar = archive_path[9:]  # wit extension
         uncompress_dir = f'/data/web_static/releases/{tar_name}/'
-        put(archive_path, "/tmp/")
+        put(archive_path, "/tmp/{}".format(tar))
+        run(f'rm -rf {uncompress_dir}/')
         run(f'mkdir -p {uncompress_dir}/')
         run("tar -xzf /tmp/{} -C {}/".format(archive_path[9:],
             uncompress_dir))
         run("rm /tmp/{}".format(tar))
+        run("rm -rf /data/web_static/releases/{}/web_static"
+            .format(tar_name))
         run("rm -rf /data/web_static/current")
         run(f'ln -s {uncompress_dir}/ /data/web_static/current')
 
