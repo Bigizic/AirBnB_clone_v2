@@ -28,8 +28,7 @@ def do_deploy(archive_path):
         put(archive_path, "/tmp/{}".format(tar))
         run(f'rm -rf {uncompress_dir}/')
         run(f'mkdir -p {uncompress_dir}/')
-        run("tar -xzf /tmp/{} -C {}/".format(archive_path[9:],
-            uncompress_dir))
+        run("tar -xzf /tmp/{} -C {}/".format(tar, uncompress_dir))
         run("rm /tmp/{}".format(tar))
         run("rm -rf /data/web_static/releases/{}/web_static"
             .format(tar_name))
