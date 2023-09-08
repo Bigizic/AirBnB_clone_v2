@@ -5,7 +5,7 @@
 from os.path import exists
 from fabric.api import *
 
-env.hosts = ['54.82.132.33', '100.24.235.105']
+env.hosts = ['35.175.135.46', '100.24.235.105']
 
 
 def do_deploy(archive_path):
@@ -30,7 +30,7 @@ def do_deploy(archive_path):
         run(f'mkdir -p {uncompress_dir}')
         run("tar -xzf /tmp/{} -C {}".format(tar, uncompress_dir))
         run("rm /tmp/{}".format(tar))
-        run("mv {}web_static/* {}".format(
+        run("mv -f {}web_static/* {}".format(
             uncompress_dir, uncompress_dir))
         run("rm -rf /data/web_static/releases/{}/web_static"
             .format(tar_name))
