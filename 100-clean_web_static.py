@@ -34,7 +34,7 @@ def do_clean(number=0):
                 archives = [a for a in archives if "web_static_" in a]
                 [archives.pop() for i in range(int(number))]
                 [run("rm -rf ./{}".format(a)) for a in archives]
-        if int(number) == 2:
+        if int(number) >= 2:
             first_max = max(int_list)
             int_list.remove(first_max)
             sec_max = max(int_list)
