@@ -35,13 +35,19 @@ def do_clean(number=0):
                 [archives.pop() for i in range(int(number))]
                 [run("rm -rf ./{}".format(a)) for a in archives]
         if int(number) >= 2:
+            new_list.sort(reverse=True)
+            my = []
+            for items in range(int(number)):
+                my.append(new_list[items])
             first_max = max(int_list)
             int_list.remove(first_max)
             sec_max = max(int_list)
             local("mkdir -p versions/temp")
-            path = f'versions/web_static_{first_max}.tgz'
-            sec_path = f'versions/web_static_{sec_max}.tgz'
-            local(f'cp {path} {sec_path} versions/temp/')
+            # path = f'versions/web_static_{first_max}.tgz'
+            # sec_path = f'versions/web_static_{sec_max}.tgz'
+            # local(f'cp {path} {sec_path} versions/temp/')
+            for files in my:
+                local(f'cp versions/{files} versions/temp/')
             local("rm versions/*tgz")
             local("cp versions/temp/*tgz versions/")
             local("rm -rf versions/temp")
