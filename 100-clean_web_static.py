@@ -29,32 +29,54 @@ def do_clean(number=0):
             local("rm versions/*tgz")
             local("cp versions/temp/*tgz versions/")
             local("rm -rf versions/temp")
+            new = []
+            run("mkdir -p /data/web_static/temp")
             with cd("/data/web_static/releases"):
                 archives = run("ls -tr").split()
-                archives = [a for a in archives if "web_static_" in a]
-                [archives.pop() for i in range(int(number))]
-                [run("rm -rf ./{}".format(a)) for a in archives]
+                for items in archives:
+                    if "web_static_" in items:
+                        new.append(items)
+                new.sort(reverse=True)
+                my = []
+                for items in range(int(number)):
+                    try:
+                        my.append(new[items])
+                    except IndexError:
+                        pass
+                for files in my:
+                    run(f'cp -r {files} ../temp')
+                run("rm -rf *")
+                run("cp -r /data/web_static/temp/* .")
+                run("rm -rf /data/web_static/temp/")
         if int(number) >= 2:
             new_list.sort(reverse=True)
             my = []
             for items in range(int(number)):
                 my.append(new_list[items])
-            first_max = max(int_list)
-            int_list.remove(first_max)
-            sec_max = max(int_list)
             local("mkdir -p versions/temp")
-            # path = f'versions/web_static_{first_max}.tgz'
-            # sec_path = f'versions/web_static_{sec_max}.tgz'
-            # local(f'cp {path} {sec_path} versions/temp/')
             for files in my:
                 local(f'cp versions/{files} versions/temp/')
             local("rm versions/*tgz")
             local("cp versions/temp/*tgz versions/")
             local("rm -rf versions/temp")
+            new = []
+            run("mkdir -p /data/web_static/temp")
             with cd("/data/web_static/releases"):
                 archives = run("ls -tr").split()
-                archives = [a for a in archives if "web_static_" in a]
-                [archives.pop() for i in range(int(number))]
-                [run("rm -rf ./{}".format(a)) for a in archives]
+                for items in archives:
+                    if "web_static_" in items:
+                        new.append(items)
+                new.sort(reverse=True)
+                my = []
+                for items in range(int(number)):
+                    try:
+                        my.append(new[items])
+                    except IndexError:
+                        pass
+                for files in my:
+                    run(f'cp -r {files} ../temp')
+                run("rm -rf *")
+                run("cp -r /data/web_static/temp/* .")
+                run("rm -rf /data/web_static/temp/")
     except Exception:
         return False
