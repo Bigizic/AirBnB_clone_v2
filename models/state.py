@@ -21,3 +21,14 @@ class State(BaseModel, Base):
         """Constructor
         """
         super().__init__(*args, **kwargs)
+
+    if models.storage_temp != 'db':
+        @property
+        def cities(self):
+            """Getter method for cities
+            """
+            cities = []
+            for city_id, city_obj in models.storage.all(City).items():
+                if city_obj.state_id == self.id:
+                    cities.append(city_obj)
+            return cities

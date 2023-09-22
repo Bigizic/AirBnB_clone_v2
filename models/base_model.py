@@ -34,6 +34,10 @@ class BaseModel:
                     setattr(self, key, value)
             if kwargs.get("id", None) is None:
                 self.id = str(uuid.uuid4())
+            if kwargs.get("created_at", None) is None:
+                self.created_at = datetime.now()
+            if kwargs.get("updated_at", None) is None:
+                self.updated_at = datetime.now()
 
         if not kwargs:
             from models import storage

@@ -70,7 +70,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """elete obj from __objects if it’s inside otherwise
+        """Delete obj from __objects if it’s inside otherwise
         does nothing
         """
         if obj is not None:
@@ -78,3 +78,8 @@ class FileStorage:
             self.__objects.pop(key, None)
         else:
             pass
+
+    def close(self):
+        """Makes a call to reload() method to deserialize JSON data
+        """
+        self.reload()
