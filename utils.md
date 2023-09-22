@@ -1,3 +1,3 @@
-install flask
-install mysql
-install fabric
+* install flask
+* install mysql
+* install fabric
