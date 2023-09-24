@@ -12,17 +12,15 @@
 			<LI>{{city.id}}: <B>{{city.name}}</B></LI>
 			{% endfor %}
 		</UL>
-		{% endif %}
-		{% if state_id == None %}
-		<H1>Not found!</H1>
-		{% endif %}
-		{% if states %}
+		{% elif states %}
 		<H1>States</H1>
 		<UL>
 			{% for items in states %}
 			<LI>{{items.id}}: <B>{{items.name}}</B></LI>
 			{% endfor %}
 		</UL>
+		{% else %}
+		<H1>Not found!</H1>
 		{% endif %}
 	</BODY>
 </HTML>
