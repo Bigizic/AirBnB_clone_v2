@@ -20,7 +20,7 @@ def close_session(exception):
 @app.route('/hbnb_filters', strict_slashes=False)
 def hbnb_filters():
     s = sorted(storage.all(State).values(), key=lambda state: state.name)
-    a = sorted(storage.all(Amenity).values(), key=lambda amenity: amenity.name)
+    a = storage.all(Amenity).values()
     return render_template('10-hbnb_filters.html', states=s, amenities=a)
 
 
