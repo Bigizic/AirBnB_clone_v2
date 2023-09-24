@@ -17,16 +17,15 @@ def close_session(exception):
     storage.close()
 
 
-s = sorted(storage.all(State).values(), key=lambda state: state.name)
-
-
 @app.route('/states', strict_slashes=False)
 def states():
+    s = sorted(storage.all(State).values(), key=lambda state: state.name)
     return render_template('9-states.html', states=s)
 
 
 @app.route('/states/<id>', strict_slashes=False)
 def states_id(id):
+    s = sorted(storage.all(State).values(), key=lambda state: state.name)
     stat = None
     for items in s:
         if items.id == id:

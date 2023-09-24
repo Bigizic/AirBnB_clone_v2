@@ -4,7 +4,7 @@
 		<TITLE>HBNB</TITLE>
 	</HEAD>
 	<BODY>
-		{% if state_id %}
+		{% if state_id%}
 		<H1>State: {{state_id.name}}</H1>
 		<H3>Cities:</H3>
 		<UL>
@@ -12,7 +12,7 @@
 			<LI>{{city.id}}: <B>{{city.name}}</B></LI>
 			{% endfor %}
 		</UL>
-		{% elif states %}
+		{% elif states%}
 		<H1>States</H1>
 		<UL>
 			{% for items in states %}
