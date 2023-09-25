@@ -16,6 +16,7 @@
 
 	line-height: 20px;
 	border-right: 1px solid #DDDDDD;
+
 }
 
 .amenities {
@@ -43,6 +44,9 @@
 
 	overflow-y: scroll;
 	max-height: 300px;
+	position: relative;
+	z-index: 1;
+
 }
 
 .locations:hover .popover {
