@@ -27,9 +27,13 @@ def states():
 def states_id(id):
     s = sorted(storage.all(State).values(), key=lambda state: state.name)
     stat = None
-    for items in s:
-        if items.id == id:
-            stat = items
+    if s:
+        for items in s:
+            if items.id == id:
+                stat = items
+    else:
+        stat = None
+
     return render_template('9-states.html', state_id=stat)
 
 
